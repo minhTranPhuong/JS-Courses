@@ -252,13 +252,24 @@
             }
 
             function randomImg() {
-                var randomIndex = Math.floor(Math.random() * SOURCE_IMG.length);
-                var source_temp = SOURCE_IMG[randomIndex];
-                if (source_temp.time == 1) {
-                    SOURCE_IMG.splice(randomIndex, 1);
+                // code random
+                // var randomIndex = Math.floor(Math.random() * SOURCE_IMG.length);
+                // var source_temp = SOURCE_IMG[randomIndex];
+                // if (source_temp.time == 1) {
+                //     SOURCE_IMG.splice(randomIndex, 1);
+                // }
+                // source_temp.time++;
+                // return source_temp;
+
+
+                // code ko random
+                for (var i = 0; i < SOURCE_IMG.length; i++) {
+                    if (SOURCE_IMG[i].time == 2) {
+                        SOURCE_IMG.splice(i, 1);
+                    }
+                    SOURCE_IMG[i].time++;
+                    return SOURCE_IMG[i];
                 }
-                source_temp.time++;
-                return source_temp;
             }
 
             function gamePlay() {
