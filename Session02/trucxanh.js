@@ -171,6 +171,26 @@ function CREATE_CARD(component) {
     }
 }
 
+function timeOut(component) {
+    console.log(component)
+    var seconds = document.createElement("div");
+    seconds.style = JSON.parse(JSON.stringify(component.pointNumber.style.cssText));
+    seconds.textContent = "10";
+    seconds.style.left = "100%";
+    seconds.id = "second";
+    console.log(seconds)
+    component.wrap_card.appendChild(seconds);
+    var id = setInterval(() => {
+        var distanstSeconds = Number(seconds.textContent);
+        seconds.textContent = --distanstSeconds + "";
+        //console.log(distanstSeconds)
+        if (distanstSeconds == 0) {
+            clearInterval(id);
+            stopgame(0, component);
+        }
+    }, 500);
+}
+
 // xu ly click
 function card_click(card, component) {
     if (pickCard.length == 1 && pickCard[0].id_card == card.id_card) {
@@ -181,7 +201,6 @@ function card_click(card, component) {
     }
     card.card.style.backgroundImage = `url(${card.id_src})`;
     pickCard.push(card);
-
 
     setTimeout(() => {
         if (pickCard.length == 2) {
@@ -239,6 +258,7 @@ function gamePlay() {
         btn_play.style.display = "none";
         backgound.appendChild(component.wrap_card)
         backgound.appendChild(component.pointNumber)
+        timeOut(component)
         CREATE_CARD(component)
         console.log(component.wrap_card);
         return component.wrap_card;
