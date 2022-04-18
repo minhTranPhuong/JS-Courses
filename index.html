@@ -156,7 +156,7 @@
                 card.addEventListener("click", () => {
                     card_click(obj_card, component);
                     card.style.transform = "rotatey(180deg)";
-                    card.style.transition = "0.5s";
+                    card.style.transition = "0.3s";
                 })
 
                 return obj_card;
@@ -234,7 +234,7 @@
                         component.pointNumber.textContent = point + "";
                         (pickCorrect == 10 || point == 0) ? stopgame(point, component) : pickCard = [];
                     }
-                }, (pickCard.length - 1) * 700)
+                }, (pickCard.length - 1) * 300)
             }
 
             function stopgame(point, component) {
