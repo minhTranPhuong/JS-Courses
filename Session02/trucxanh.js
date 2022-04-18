@@ -67,6 +67,7 @@ function Components() {
     pointNumber.style.width = "10%";
     pointNumber.style.bottom = "90%";
     pointNumber.style.left = "6%";
+    pointNumber.style.color = "#FF7F50"
     pointNumber.style.fontSize = "40px";
     pointNumber.style.fontWeight = "bold"
     pointNumber.textContent = "10000";
@@ -79,7 +80,9 @@ function Components() {
 
 function BACK_GROUND(component) {
     let background = document.createElement("div");
-    background.style.backgroundColor = "pink";
+    background.style.backgroundImage = "url(https://demoda.vn/wp-content/uploads/2022/03/hinh-nen-rau-trang-one-piece.jpg)"
+    background.id = "background";
+    background.style.backgroundSize = "cover"
     background.style.width = "600px";
     background.style.height = "600px";
     background.style.position = "relative";
@@ -92,7 +95,8 @@ function BACK_GROUND(component) {
 
 function BUTTON_PLAY(backgound) {
     let bt_play = document.createElement("div");
-    bt_play.style.backgroundColor = "blue";
+    bt_play.id = "btn_play";
+    bt_play.style.backgroundColor = "#CD853F";
     bt_play.style.width = "20%";
     bt_play.style.height = "5%";
     bt_play.style.bottom = "10%";
@@ -109,7 +113,7 @@ function BUTTON_PLAY(backgound) {
         bt_play.style.backgroundColor = "#00F5FF"
     })
     bt_play.addEventListener("mouseout", (e) => {
-        bt_play.style.backgroundColor = "blue"
+        bt_play.style.backgroundColor = "#CD853F"
     })
     backgound.appendChild(bt_play);
     return bt_play;
@@ -119,7 +123,7 @@ function CARD(top, left, id, img, component) {
     let card = document.createElement("img");
     card.style.width = "100px";
     card.style.height = "100px";
-    card.style.backgroundColor = "red";
+    card.style.backgroundColor = "#F0F8FF";
     card.style.backgroundImage = '';
     card.style.backgroundSize = 'cover';
     card.style.backgroundPosition = '50%';
@@ -127,6 +131,7 @@ function CARD(top, left, id, img, component) {
     card.style.position = "absolute";
     card.style.top = top;
     card.style.left = left;
+    card.style.border = "2px solid black"
     card.style.cursor = "pointer"
 
 
@@ -152,7 +157,6 @@ function CREATE_CARD(component) {
     var arrCARD = [];
     var count_row = 0;
     for (var i = 0; i < 5; i++) {
-        console.log(i)
         var valueLeft = 110 * i + 10;
         var valueTop = 110 * count_row + 10;
         if (i == 0) {
@@ -172,18 +176,15 @@ function CREATE_CARD(component) {
 }
 
 function timeOut(component) {
-    console.log(component)
     var seconds = document.createElement("div");
     seconds.style = JSON.parse(JSON.stringify(component.pointNumber.style.cssText));
-    seconds.textContent = "10";
+    seconds.textContent = "120";
     seconds.style.left = "100%";
     seconds.id = "second";
-    console.log(seconds)
     component.wrap_card.appendChild(seconds);
     var id = setInterval(() => {
         var distanstSeconds = Number(seconds.textContent);
         seconds.textContent = --distanstSeconds + "";
-        //console.log(distanstSeconds)
         if (distanstSeconds == 0) {
             clearInterval(id);
             stopgame(0, component);
@@ -213,9 +214,9 @@ function card_click(card, component) {
             }
             else {
                 pickCard[0].card.style.backgroundImage = ''
-                pickCard[0].card.style.backgroundColor = "red";
+                pickCard[0].card.style.backgroundColor = "#F0F8FF";
                 pickCard[1].card.style.backgroundImage = ''
-                pickCard[1].card.style.backgroundColor = "red";
+                pickCard[1].card.style.backgroundColor = "#F0F8FF";
                 pickCard[0].card.style.transform = ""
                 pickCard[1].card.style.transform = ""
                 point -= 500;
@@ -260,8 +261,6 @@ function gamePlay() {
         backgound.appendChild(component.pointNumber)
         timeOut(component)
         CREATE_CARD(component)
-        console.log(component.wrap_card);
-        return component.wrap_card;
     })
 }
 gamePlay();
