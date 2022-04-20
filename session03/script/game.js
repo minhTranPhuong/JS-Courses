@@ -27,7 +27,8 @@ class Game extends Node {
     }
 
     _createCards() {
-        this._waffleCard();
+        this.arrImage = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9]
+        //this._waffleCard();
         for (var i = 0; i < 20; i++) {
             var card = new Card(i);
             let col = i % 5;
@@ -42,7 +43,6 @@ class Game extends Node {
     }
 
     _waffleCard() {
-        this.arrImage = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
         this.arrImage.sort(() => {
             return 0.5 - Math.random();
         });
@@ -59,7 +59,6 @@ class Game extends Node {
     }
 
     onClickCard(card) {
-        console.log(this.cards[0], this.cards[1]);
         if (!this.canClick) return;
 
         if (this.cards.length == 1 && this.cards[0].index === card.index) return;
@@ -78,11 +77,7 @@ class Game extends Node {
     }
 
     compareCard(fistCard, secondCard) {
-        console.log(fistCard);
-        console.log(secondCard)
         if (fistCard.value === secondCard.value) {
-            // fistCard.hide();
-            // secondCard.hide();
             this.removeChild(fistCard)
             this.removeChild(secondCard)
             this.score.text = (Number(this.score.text) + 1000) + "";
@@ -106,7 +101,6 @@ class Game extends Node {
     }
 
     resetAnimation(card1, card2) {
-        console.log(card1, card2)
         card1.elm.style.transform = "";
         card1.x = card1.x - 100;
         card2.elm.style.transform = "";
