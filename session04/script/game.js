@@ -75,7 +75,7 @@ class Game extends Node {
             setTimeout(() => {
                 this.cards[1] = card
                 this.compareCard(this.cards[0], this.cards[1]);
-            }, 3000)
+            }, 1000)
         }
     }
 
@@ -111,7 +111,7 @@ class Game extends Node {
         this.addChild(stateGame);
 
         this.statusGame(state);
-        var buttonReset = this.buttonReset();
+        var buttonReset = this.CreateReset();
         stateGame.addChild(buttonReset);
     }
 
@@ -123,7 +123,7 @@ class Game extends Node {
         this.score.fontSize = 100;
         this.score.elm.style.transition = "3s"
     }
-    buttonReset() {
+    CreateReset() {
         var buttonReset = new Label();
         buttonReset.x = this.width / 2;
         buttonReset.y = this.height / 2;
